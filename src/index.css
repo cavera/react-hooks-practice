@@ -78,7 +78,20 @@ button:focus-visible {
 
 .Characters {
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
+	grid-template-columns: repeat(4, 1fr);
+	gap: 1rem;
+}
+
+.Charcter-card {
+	overflow: hidden;
+	background-color: #f3f3f3;
+	border-radius: 1rem;
+}
+.Charcter-card img {
+	width: 100%;
+}
+.Charcter-card p {
+	margin: 0 0 0.5rem;
 }
 
 @media (prefers-color-scheme: light) {
