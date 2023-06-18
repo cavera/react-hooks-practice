@@ -1,5 +1,13 @@
-import { useState, useEffect, useReducer, useMemo } from 'react'
+import {
+  useState,
+  useEffect,
+  useReducer,
+  useMemo,
+  useRef,
+  useCallback
+} from 'react'
 import CharacterCard from './CharacterCard'
+import Search from './Search'
 
 const initialState = {
   favorites: []
@@ -23,6 +31,7 @@ const Characters = () => {
   const [charactersList, setCharactersList] = useState([])
   const [favorites, dispatch] = useReducer(favoriteReducer, initialState)
   const [search, setSearch] = useState('')
+  const searchInput = useRef(null)
 
   useEffect(() => {
     fetch(charactersApi)
@@ -38,13 +47,13 @@ const Characters = () => {
     })
   }
 
-  const handleSearch = e => {
-    setSearch(e.target.value)
-  }
+  // const handleSearch = () => {
+  //   setSearch(searchInput.current.value)
+  // }
 
-  // const filteredCharacters = charactersList.filter(character => {
-  //   return character?.name.toLowerCase().includes(search.toLowerCase())
-  // })
+  const handleSearch = useCallback(() => {
+    setSearch(searchInput.current.value)
+  }, [])
 
   const filteredCharacters = useMemo(() => {
     return charactersList.filter(character => {
@@ -54,9 +63,11 @@ const Characters = () => {
 
   return (
     <>
-      <div className='search'>
-        <input type='text' value={search} onChange={handleSearch} />
-      </div>
+      <Search
+        search={search}
+        searchInput={searchInput}
+        handleSearch={handleSearch}
+      />
       <ul>
         {favorites.favorites?.map(favorite => (
           <li key={favorite.name}>{favorite.name}</li>
