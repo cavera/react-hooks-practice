@@ -6,9 +6,9 @@ const CharacterCard = ({ character, handleClick }) => {
       <button className='favorite' onClick={() => handleClick(character)}>
         Add to favorites
       </button>
-      <p>{character.species}</p>
+      {/* <p>{character.species}</p>
       <p>{character.status}</p>
-      <p>{character.gender}</p>
+      <p>{character.gender}</p> */}
     </article>
   )
 }

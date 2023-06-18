@@ -8,6 +8,7 @@ import {
 } from 'react'
 import CharacterCard from './CharacterCard'
 import Search from './Search'
+import { useCharacters } from '../hooks/useCharacters'
 
 const initialState = {
   favorites: []
@@ -28,17 +29,11 @@ const favoriteReducer = (state, action) => {
 const charactersApi = 'https://rickandmortyapi.com/api/character/?page=1'
 
 const Characters = () => {
-  const [charactersList, setCharactersList] = useState([])
+  const charactersList = useCharacters(charactersApi)
+
   const [favorites, dispatch] = useReducer(favoriteReducer, initialState)
   const [search, setSearch] = useState('')
   const searchInput = useRef(null)
-
-  useEffect(() => {
-    fetch(charactersApi)
-      .then(response => response.json())
-      .then(data => setCharactersList(data.results))
-      .catch(error => console.log(error))
-  }, [])
 
   const handleClick = favorite => {
     dispatch({

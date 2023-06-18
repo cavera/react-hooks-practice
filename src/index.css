@@ -84,14 +84,18 @@ button:focus-visible {
 
 .Charcter-card {
 	overflow: hidden;
-	background-color: #f3f3f3;
+	background-color: #ffffff11;
 	border-radius: 1rem;
+	padding-bottom: 1rem;
 }
 .Charcter-card img {
 	width: 100%;
 }
 .Charcter-card p {
-	margin: 0 0 0.5rem;
+	margin: 0 1rem;
+}
+.Charcter-card h2 {
+	margin: 0 1rem;
 }
 
 @media (prefers-color-scheme: light) {
